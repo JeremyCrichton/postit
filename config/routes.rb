@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: 'posts#index'
+
+  # expose all post related routes except delete
+  resources :posts, except: [:destroy] do
+    resources :comments, only: [:create]
+  end
+  resources :categories, only: [:new, :create, :show]
 end

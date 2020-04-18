@@ -1,0 +1,9 @@
+<div class="container">
+  <%= render 'shared/content_title', title: "All Posts" %>
+
+  <hr>
+
+  <% @posts.each do |post| %>
+    <%= render 'post', post: post%>
+  <% end %>
+</div>
