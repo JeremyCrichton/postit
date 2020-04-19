@@ -19,22 +19,26 @@
 <% if logged_in? %>
   <%= form_for [@post, @comment] do |f| %> <%# Submit to /posts/3/comments %>
   <%= render 'shared/error', object: @comment %>
-    <div class="control-group">
+    <div class="form-group">
       <%= f.label :body, "Leave a comment" %>
-      <%= f.text_area :body, rows: 3, class: 'span4' %>
+      <%= f.text_area :body, rows: 3, class: 'form-control' %>
     </div>
     <%= f.submit 'Create a comment', class: 'btn btn-primary'%>
   <% end %>
 <% end %>
 
-<h5>Comments</h5>
-<ul>
-  <% @post.comments.each do |comment| %>
-    <div class="well span8">
-      <em><%= comment.body %></em>
-      <br />
-      <span class="quiet">by</span> <%= comment.creator.username %>
-      <span>at <%= display_datetime(comment.created_at) %></span>
-    </div>
-  <% end %>
-</ul>
+<div class="mt-4">
+  <h5>Comments</h5>
+  <ul>
+    <% @post.comments.each do |comment| %>
+      <div class="card">
+        <div class="card-body">
+          <em><%= comment.body %></em>
+          <br />
+          <span class="quiet">by</span> <%= comment.creator.username %>
+          <span>at <%= display_datetime(comment.created_at) %></span>
+        </div>
+      </div>
+    <% end %>
+  </ul>
+</div>

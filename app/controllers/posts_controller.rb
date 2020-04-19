@@ -16,13 +16,13 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    # @post.creator = current_user
     @post.creator = current_user
 
     if @post.save
-        flash[:notice] = "Your post was created."
-        redirect_to posts_path
+        # flash[:notice] = "Your post was created."
+        redirect_to posts_path, notice: "Your post was created."
       else
-        # render new post template
         render :new
       end
   end

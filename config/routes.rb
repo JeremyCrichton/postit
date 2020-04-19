@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
 
   # We create the register route manually because we don't want the URl to be /users/new as would be w/ resources
-  get '/register', to: 'users#new'
+  # get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
@@ -12,5 +12,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
   end
   resources :categories, only: [:new, :create, :show]
-  resources :users, only: [:show, :create, :edit, :update]
+  # resources :users, only: [:show, :create, :edit, :update]
 end
