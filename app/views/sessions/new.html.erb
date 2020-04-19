@@ -1,7 +1,5 @@
 <%= render 'shared/content_title', title: 'Log in' %>
 
-<%# Session isn't a model so no model backed form here %>
-
 <div class="card">
   <div class="card-body">
     <%= form_with(url: '/login', method: 'post') do %>

@@ -2,18 +2,4 @@
 
 <%= render 'shared/error', object: @user %>
 
-<div class="card">
-  <div class="card-body">
-    <%= form_with model: @user do |f| %>
-      <div class="form-group">
-        <%= label_tag(:username, "Enter your name") %>
-        <%= f.text_field :username, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:password, "Choose a password") %>
-        <%= f.password_field :password, class: 'form-control' %>
-      </div>
-      <%= f.submit "Register", class: 'btn btn-success' %>
-    <% end %>
-  </div>
-</div>
+<%= render 'form' %>
