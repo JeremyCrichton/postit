@@ -1,0 +1,33 @@
+<%= render 'shared/content_title', title: "#{@user.username}'s profile" %>
+
+
+<div class="card mb-4">
+  <div class="card-body">
+    <dl class="row">
+      <dt class="col-sm-3">Username</dt>
+      <dd class="col-sm-9"><%= @user.username %></dd>
+    </div>
+  </div>
+</dl>
+
+<div>
+  <h5><%= "#{@user.username}'s activity" %></h5>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <%= link_to "Posts (#{@user.posts.size})", user_path(@user), class: "nav-link #{'active' if params[:tab].nil?}" %>
+    </li>
+    <li class="nav-item">
+      <%# Add to params hash by specifying a 2nd arg in the path %>
+      <%# Params hash is accessible in the view, so we can conditinoally add a class here and above based on what tab has been clicked %>
+      <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: 'comments'), class: "nav-link #{'active' if params[:tab] == 'comments'}" %>
+    </li>
+  </ul>
+</div>
+
+<% if params[:tab].nil? %>
+  <% @user.posts.each do |post| %>
+    <%= render 'posts/post', post: post %>
+  <% end %>
+<% else %>
+  SHOW COMMENTS
+<% end %>
