@@ -1,0 +1,19 @@
+<%# @TODO if i use new syntax "form_with", errors won't register - i think User.new is called in the new action before this renders which wipes out error hash %>
+
+<%= render '/shared/error', object: @user%>
+
+<div class="card">
+  <div class="card-body">
+    <%= form_for @user do |f| %>
+      <div class="form-group">
+        <%= f.label :username %>
+        <%= f. text_field :username, class: "form-control"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f. password_field :password, class: "form-control"%>
+      </div>
+      <%= f.submit 'Register', class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
