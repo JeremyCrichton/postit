@@ -1,3 +1,3 @@
 # README
 
-Current: 4-4, 11:40 left
+Launch School example blog app buit with Rails 6.
