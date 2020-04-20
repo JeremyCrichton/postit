@@ -14,7 +14,14 @@ Rails.application.routes.draw do
       post 'vote'
     end
     
-    resources :comments, only: [:create]
+    resources :comments, only: [:create] do
+      member do
+        # posts/3/comments/1/vote => comments#vote
+        # vote_post_comment
+        # NOTE: Must pass in post AND comment in view
+        post 'vote'
+      end
+    end
   end
   resources :categories, only: [:new, :create, :show]
   

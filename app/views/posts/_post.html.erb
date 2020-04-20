@@ -3,14 +3,18 @@
     <div class="card">
       <div class="card-body text-center">
         <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
-          up
+          <% if logged_in? %>
+              up
+            <% end %>
         <% end %>
         <br />
         <%# Instance method in the Post model %>
         <%= post.total_votes %>
         <br />
         <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
-          down
+          <% if logged_in? %>
+              down
+            <% end %>
         <% end %>
       </div>
     </div>

@@ -1,14 +1,38 @@
 <%# if show_post is not passed in, set it to false (so you only need to pass it in if you want to show post) %>
 <% show_post ||= false %>
 
-<div class="card">
-  <div class="card-body">
-    <em>"<%= comment.body %>"</em>
-    <% if show_post %>
-      <span>on <%= link_to comment.post.title, post_path(comment.post) %></span>
-    <% end %>
-    <br />
-    <span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
-    <span>at <%= display_datetime(comment.created_at) %></span>
+<div class="row">
+  <div class="col-2">
+    <div class="card">
+      <div class="card-body text-center">
+          <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+            <% if logged_in? %>
+              up
+            <% end %>
+          <% end %>
+        <br />
+        <%= comment.total_votes %>
+        <br />
+        <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+          <% if logged_in? %>
+              down
+            <% end %>
+        <% end %>        
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-10">
+    <div class="card">
+      <div class="card-body">
+        <em>"<%= comment.body %>"</em>
+        <% if show_post %>
+          <span>on <%= link_to comment.post.title, post_path(comment.post) %></span>
+        <% end %>
+        <br />
+        <span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
+        <span>at <%= display_datetime(comment.created_at) %></span>
+      </div>
+    </div>
   </div>
 </div>
