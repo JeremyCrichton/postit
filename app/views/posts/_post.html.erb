@@ -1,19 +1,37 @@
 <div class="row">
-  <div class="card">
-    <div class="card-body">
-      <%# Rendering a partial with a collection - like post.categories.each do |category| render 'categories/_category', category: category %>
-      <div class="card-title"><%= render post.categories %></div>
-      <h4><%= link_to post.title, fix_url(post.url) %></h4>
-      <p><%= post.description %></p>
-      <p>
-        <span class="quiet">posted by</span> <%= post.creator.username %>
-        <span>at <%= display_datetime(post.created_at) %></span>
-      </p>
-      <small>
-        <span>
-          <%= link_to "#{post.comments.size} comments", post_path(post) %>
-        </span>
-      </small>
+  <div class="col-2">
+    <div class="card">
+      <div class="card-body text-center">
+        <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
+          up
+        <% end %>
+        <br />
+        <%# Instance method in the Post model %>
+        <%= post.total_votes %>
+        <br />
+        <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
+          down
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-10">
+    <div class="card">
+      <div class="card-body">
+        <%# Rendering a partial with a collection - like post.categories.each do |category| render 'categories/_category', category: category %>
+        <div class="card-title"><%= render post.categories %></div>
+        <h4><%= link_to post.title, fix_url(post.url) %></h4>
+        <p><%= post.description %></p>
+        <p>
+          <span class="quiet">posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
+          <span>at <%= display_datetime(post.created_at) %></span>
+        </p>
+        <small>
+          <span>
+            <%= link_to "#{post.comments.size} comments", post_path(post) %>
+          </span>
+        </small>
+      </div>
     </div>
   </div>
 </div>

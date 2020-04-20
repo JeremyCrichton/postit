@@ -1,6 +1,5 @@
 <%= render 'shared/content_title', title: "#{@user.username}'s profile" %>
 
-
 <div class="card mb-4">
   <div class="card-body">
     <dl class="row">
@@ -24,10 +23,15 @@
   </ul>
 </div>
 
-<% if params[:tab].nil? %>
-  <% @user.posts.each do |post| %>
-    <%= render 'posts/post', post: post %>
+<div>
+  <% if params[:tab].nil? %>
+    <% @user.posts.each do |post| %>
+      <%= render 'posts/post', post: post %>
+    <% end %>
+  <% else %>
+    <% @user.comments.each do |comment| %>
+      <%# <%= render partial: 'posts/comment', locals: { comment: comment, show_post: true } %>
+      <%= render 'posts/comment',  comment: comment, show_post: true %>
+    <% end %>
   <% end %>
-<% else %>
-  SHOW COMMENTS
-<% end %>
+</div>

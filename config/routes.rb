@@ -9,6 +9,11 @@ Rails.application.routes.draw do
 
   # expose all post related routes except delete
   resources :posts, except: [:destroy] do
+    # /post/2/vote => posts#vote
+    member do
+      post 'vote'
+    end
+    
     resources :comments, only: [:create]
   end
   resources :categories, only: [:new, :create, :show]
