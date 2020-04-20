@@ -4,15 +4,13 @@
 <div class="row">
   <div class="col-2">
     <div class="card">
-      <div class="card-body text-center">
+      <div class="card-body d-flex flex-column justify-content-center align-items-center">
           <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
             <% if logged_in? %>
               up
             <% end %>
           <% end %>
-        <br />
-        <%= comment.total_votes %>
-        <br />
+        <%= "#{comment.total_votes} vote#{comment.total_votes != 1 ? 's' : ''}" %>
         <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
           <% if logged_in? %>
               down
