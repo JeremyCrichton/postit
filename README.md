@@ -1,3 +1,3 @@
-# README
+# Postit
 
-Launch School example blog app buit with Rails 6.
+An app built with Ruby on Rails that allows you to create posts, comment and vote.
